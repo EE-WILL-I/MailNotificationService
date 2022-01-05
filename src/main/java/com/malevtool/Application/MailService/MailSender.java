@@ -25,7 +25,7 @@ public class MailSender {
     @Autowired
     public MailSender(Properties properties) {
         try {
-            session = Session.getDefaultInstance(properties, new Authenticator(properties));
+            session = Session.getInstance(properties, new Authenticator(properties));
             addressFrom = new InternetAddress(properties.getProperty("mail.smtp.from"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,6 +42,10 @@ public class MailSender {
         addRecipients(recipients);
         MimeMessage message = prepareMessage(content, subject);
         sendMessage(message);
+    }
+
+    public void sendMessage(com.malevtool.Entities.Message message) throws MessagingException {
+        sendMessage(message.getContent(), message.getTitle(), message.getRecipients());
     }
 
     public void sendMessage(MimeMessage message) throws MessagingException {

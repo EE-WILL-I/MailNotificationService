@@ -1,7 +1,8 @@
 package com.malevtool.Application.Servlets;
 
-import com.malevtool.JPA.Entities.JSONData;
-import com.malevtool.JPA.Entities.MailingAccount;
+import Utils.Properties.PropertyReader;
+import Utils.Properties.PropertyType;
+import com.malevtool.Entities.MailingAccount;
 import com.malevtool.JSON.JSONBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,22 +10,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class IndexServlet {
 
-    @GetMapping({"/", "/index", "/info"})
-    public MailingAccount getDefaultAccountInfo() {
-        return getAccountInfo("0");
+    @GetMapping({"/", "/index", "/info", "/status"})
+    public String getStatusInfo() {
+        return new JSONBuilder().addAVP("status","OK").getString();
     }
 
-    @GetMapping("/account/info/{id}")
+    @GetMapping("/account/info")
     @ResponseBody
-    public MailingAccount getAccountInfo(@PathVariable String id) {
-        JSONData account = new MailingAccount(id, "default@account.test");
-        //JSONData account1 = new MailingAccount("666", "ultimate@user.nice");
-        JSONBuilder builder = new JSONBuilder();
-        String data = builder.addAVP("mode","test")
-                .openArray("accounts")
-                .addSubJSONElement(account.toJSONString())
-                .closeArray().getString();
-        return new MailingAccount(id, "test@test.test");
+    public MailingAccount getCurrentAccountInfo() {
+        return new MailingAccount("0",
+                PropertyReader.getPropertyValue(PropertyType.MAILSERVICE, "mail.smtp.user"),
+                PropertyReader.getPropertyValue(PropertyType.MAILSERVICE, "mail.smtp.password"));
     }
 
     @PostMapping(value = "/account/provide", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
