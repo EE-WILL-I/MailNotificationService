@@ -1,21 +1,17 @@
 package com.malevtool.Entities;
 
 public class Message {
-    private MailingAccount account;
     private String title;
     private String content;
     private String[] recipients;
 
-    public Message(MailingAccount account, String title, String content, String[] recipients) {
-        this.account = account;
+    public Message(String title, String content, String[] recipients) {
         this.title = title;
         this.content = content;
         this.recipients = recipients;
     }
 
-    public Message() { this(new MailingAccount(), "", "", null); }
-
-    public void setAccount(MailingAccount account) { this.account = account; }
+    public Message() { this("", "", null); }
 
     public void setTitle(String title) { this.title = title; }
 
@@ -23,7 +19,6 @@ public class Message {
 
     public void setRecipients(String[] recipients) { this.recipients = recipients; }
 
-    public MailingAccount getAccount() { return account; }
 
     public String getTitle() { return title; }
 
@@ -32,7 +27,11 @@ public class Message {
     public String[] getRecipients() { return recipients; }
 
     public String toString() {
-        return "Account: " + account.getLogin() + "\nTitle: " + title
-                + "\nContent: " + content + "\nRecipients: " + recipients.length;
+        StringBuilder builder = new StringBuilder();
+        if(recipients == null)
+            builder.append("No recipients");
+        else for(String recipient : recipients)
+            builder.append(recipient);
+        return "\nTitle: " + title + "\nContent: " + content + "\nRecipients: " + builder;
     }
 }

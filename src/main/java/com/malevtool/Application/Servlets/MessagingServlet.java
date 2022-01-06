@@ -6,20 +6,21 @@ import com.malevtool.Entities.Message;
 import com.malevtool.JSON.JSONBuilder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
-
 @RestController
-public class InputOutputServlet {
+public class MessagingServlet {
     @PostMapping("mail/send")
     @ResponseBody
     public String sendMessage(@RequestBody Message message) {
+        Logger.log(this, "Trying to send message: " + message.toString(), 1);
         try {
             MailSender.getInstance().sendMessage(message);
-        } catch (MessagingException e) {
-            Logger.log(this, e.getMessage());
-            return new JSONBuilder().addAVP("status", "error").addAVP("message", e.getMessage()).getString();
+        } catch (Exception e) {
+            Logger.log(this, "Couldn't send message. " + e.getMessage());
+            return new JSONBuilder().addAVP("status", "error").addAVP("message",
+                    e.getMessage()).getString();
         }
-        return new JSONBuilder().addAVP("status","OK").addAVP("message", message.toString()).getString();
+        return new JSONBuilder().addAVP("status","OK").addAVP("message",
+                message.toString()).getString();
     }
 
     @PostMapping("mail/sendTemplate/{id}")

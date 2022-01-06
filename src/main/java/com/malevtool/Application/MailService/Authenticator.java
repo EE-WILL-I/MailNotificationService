@@ -1,5 +1,8 @@
 package com.malevtool.Application.MailService;
 
+import com.malevtool.Application.Connection.AccountManager;
+import com.malevtool.Entities.MailingAccount;
+
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 
@@ -12,7 +15,8 @@ public class Authenticator extends javax.mail.Authenticator {
 
     @Override
     public PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(properties.getProperty("mail.smtp.user"), properties.getProperty("mail.smtp.password"));
+        MailingAccount account = AccountManager.getAccount();
+        return new PasswordAuthentication(account.getLogin(), account.getPassword());
     }
 }
 

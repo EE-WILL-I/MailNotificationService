@@ -38,7 +38,16 @@ public class MailSender {
         return mailServiceContext.getBean(MailSender.class);
     }
 
-    public void sendMessage(String content, String subject, String... recipients) throws MessagingException {
+    public void update(Properties properties) {
+        try {
+            session = Session.getInstance(properties, new Authenticator(properties));
+            addressFrom = new InternetAddress(properties.getProperty("mail.smtp.from"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendMessage(String content, String subject, String... recipients) throws MessagingException, NullPointerException {
         addRecipients(recipients);
         MimeMessage message = prepareMessage(content, subject);
         sendMessage(message);
@@ -58,9 +67,13 @@ public class MailSender {
         Logger.log(MailSender.class, "Message sent to: " + recipientsString.toString(), 1);
     }
 
-    public void addRecipients(String[] recipients) {
-        for(String recipient : recipients)
-            addRecipient(recipient);
+    public void addRecipients(String[] recipients) throws NullPointerException {
+        try {
+            for (String recipient : recipients)
+                addRecipient(recipient);
+        } catch (NullPointerException e) {
+            throw new NullPointerException("No recipients provided");
+        }
     }
 
     public void addRecipient(String address) {

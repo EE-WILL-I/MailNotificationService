@@ -33,8 +33,8 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<version>2.5.6</version>
 			<scope>provided</scope>
+			<version>2.5.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -76,7 +76,12 @@
 		<dependency>
 			<groupId>com.malevtools</groupId>
 			<artifactId>FilesAndResourcesUtils</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
 		</dependency>
 		<!--DCS-->
 		<dependency>
@@ -107,6 +112,10 @@
 		<repository>
 			<id>custom-repo</id>
 			<url>https://sanctorum.jfrog.io/artifactory/dev-remote-libs-snapshot/</url>
+		</repository>
+		<repository>
+			<id>custom-release-repo</id>
+			<url>https://sanctorum.jfrog.io/artifactory/dev-remote-libs-release/</url>
 		</repository>
 	</repositories>
 
