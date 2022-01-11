@@ -1,0 +1,1 @@
+update mail_templates set subject = '@a1', content = '@a2', signature = '@a3' where id like '@a0'

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MailNotificationService:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>MailNotificationService</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="MailNotificationService-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MailNotificationService:war exploded" />
+    </root>
+  </artifact>
+</component>

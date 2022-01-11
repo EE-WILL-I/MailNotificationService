@@ -1,7 +1,7 @@
 package com.malevtool.Application.Servlets;
 
+import Utils.JSON.JSONBuilder;
 import com.malevtool.Application.Main;
-import com.malevtool.JSON.JSONBuilder;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ShutdownServlet implements ApplicationContextAware {
     private ApplicationContext context;
 
-    @PostMapping("/shutdown")
+    @PostMapping("/app/shutdown")
     public String shutdownContext() {
         ((ConfigurableApplicationContext)context).close();
         return new JSONBuilder().addAVP("status", "closed").getString();

@@ -1,9 +1,9 @@
 package com.malevtool.Application.Servlets;
 
+import Utils.JSON.JSONBuilder;
 import Utils.Logging.Logger;
 import com.malevtool.Application.MailService.MailSender;
 import com.malevtool.Entities.Message;
-import com.malevtool.JSON.JSONBuilder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

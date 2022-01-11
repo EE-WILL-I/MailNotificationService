@@ -1,9 +1,9 @@
 package com.malevtool.Application.Servlets;
 
+import Utils.JSON.JSONBuilder;
 import Utils.Properties.PropertyReader;
 import Utils.Properties.PropertyType;
 import com.malevtool.Entities.MailingAccount;
-import com.malevtool.JSON.JSONBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +23,4 @@ public class IndexServlet {
                 PropertyReader.getPropertyValue(PropertyType.MAILSERVICE, "mail.smtp.user"),
                 PropertyReader.getPropertyValue(PropertyType.MAILSERVICE, "mail.smtp.password"));
     }
-
-    /*@PostMapping(value = "/account/provide", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String provideAccount(@RequestBody MailingAccount account) {
-        return "{\"id\" : \""+account.getId()+"\"}";
-    }*/
-}
+} /* f[f[f[f[f[f[f ахахахахахахха ищи себя */

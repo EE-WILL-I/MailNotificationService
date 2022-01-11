@@ -1,9 +1,9 @@
 package com.malevtool.Application.Servlets;
 
+import Utils.JSON.JSONBuilder;
 import Utils.Logging.Logger;
 import com.malevtool.Application.Connection.AccountManager;
 import com.malevtool.Application.Security.AuthorizationManager;
-import com.malevtool.JSON.JSONBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;

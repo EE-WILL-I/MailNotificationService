@@ -1,0 +1,1 @@
+delete from mail_templates where id like '@a0'

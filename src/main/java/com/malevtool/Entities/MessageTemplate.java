@@ -1,19 +1,23 @@
 package com.malevtool.Entities;
 
 public class MessageTemplate {
-    private String title;
+    private int id;
+    private String subject;
     private String content;
     private String signature;
 
-    public MessageTemplate(String title, String content, String signature) {
+    public MessageTemplate(int id, String subject, String content, String signature) {
+        this.id = id;
         this.content = content;
-        this.signature= signature;
-        this.title = title;
+        this.signature = signature;
+        this.subject = subject;
     }
 
     public MessageTemplate() {
-        this("", "", "");
+        this(-1, "", "", "");
     }
+
+    public void setId(int id) { this.id = id; }
 
     public void setContent(String content) {
         this.content = content;
@@ -23,9 +27,11 @@ public class MessageTemplate {
         this.signature = signature;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
+
+    public int getId() { return id; }
 
     public String getContent() {
         return content;
@@ -35,7 +41,7 @@ public class MessageTemplate {
         return signature;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubject() {
+        return subject;
     }
 }
